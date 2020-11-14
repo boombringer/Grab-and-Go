@@ -11,15 +11,16 @@ public class Player : MonoBehaviour
     //
     public bool pickUp = false;
     public bool dropOff = false;
-    public bool specialNode = false;
+    
 
     //Quest Selector
     public bool finishedQuest; // atur lagi
     public Quest activeQuest;
     public QuestSelector questSelector;
 
-    //Node Selector
-    public bool specialNodeResolved = true;
+    //special node mode
+    public bool specialNode = false;
+    public bool cardDrawn = false;
 
     private void Update()
     {
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
     }
 
     // Check Node Menunjukan Trigger pada Player
-    public void CheckNode(Node currentNode)
+    public void CheckQuestNode(Node currentNode)
     {
 
         if (currentNode == activeQuest.pickupNode)
@@ -61,23 +62,19 @@ public class Player : MonoBehaviour
             
         }
 
-        //check klo kena special node 
-        string a = currentNode.GetNodeType();
-        Debug.Log("tag : " + a);
-        string b = "special";
-        Debug.Log("test : " + b);
-        if (a.Equals(b))
+        
+    }
+
+    public void CheckSpecialNode(Node currentNode)
+    {
+        if (currentNode.isSpecial())
         {
-            
             specialNode = true;
-            specialNodeResolved = false;
             Debug.Log("SPECIAL NODE");
-            // melakukan special Node shenanigans
-            //GET NODE
         }
     }
 
-    // Menambah Quest Baru Pada 
+
     public void SetQuest (Quest qt) // SET ACTIVE QUEST WAJIB PAKE INI
     {
         activeQuest = qt;
@@ -86,11 +83,5 @@ public class Player : MonoBehaviour
         finishedQuest = false;
     }
 
-    public void SpecialNodeResolved()
-    {
-        specialNodeResolved = true;
-        specialNode = false;
-    }
-
-
+    
 }

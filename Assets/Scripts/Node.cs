@@ -34,6 +34,14 @@ public class Node : MonoBehaviour
         }
     }
 
+    public void SetEffect()
+    {
+        IEffect effect = GetComponent<IEffect>();
+        if (effect == null) return;
+        
+
+    }
+
 
 
     public int GetNodeId()
@@ -41,9 +49,13 @@ public class Node : MonoBehaviour
         return nodeID;
     }
 
-    public string GetNodeType() 
+    public bool isSpecial()
     {
-        return gameObject.tag;
+        string spc = "special";
+        string tag = gameObject.tag;
+
+        if (tag.Equals(spc)) return true;
+        return false;
     }
 
     public int NodeActiveConnection()

@@ -57,7 +57,7 @@ public class CarMovement : MonoBehaviour
 
         if(pState == PlayerState.nodeCheck)
         {
-            player.CheckNode(currentNode);
+            player.CheckQuestNode(currentNode);
             pState = PlayerState.quest;
         }
 
@@ -79,9 +79,7 @@ public class CarMovement : MonoBehaviour
         {
             if (player.specialNode)
             {
-                //sementara
-                if (Input.GetKeyDown(KeyCode.S))
-                    player.SpecialNodeResolved();
+                
 
             }
             else

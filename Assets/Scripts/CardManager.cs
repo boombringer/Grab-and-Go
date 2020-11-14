@@ -30,10 +30,24 @@ public class CardManager : MonoBehaviour
 
     public void CloseCardDraw()
     {
-
         _drawButton.onClick.RemoveAllListeners();
         _cardDrawUI.SetActive(false);
 
     }
 
+}
+
+public class Card
+{
+    public string _effectID;
+    public Player _player;
+    public bool _effectOnPlayer;
+
+    public int _modifier;
+
+    public Card(Player player, string effectID, bool effOnPlayer)
+    {
+        _effectID = effectID;
+        _player = player;
+    }
 }
