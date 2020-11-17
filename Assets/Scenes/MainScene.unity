@@ -875,7 +875,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &467873075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2366,14 +2366,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37264a294b7faf4b83ca0893ef8db2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeManager: {fileID: 0}
+  playerMove: {fileID: 0}
   player: {fileID: 0}
   playerID: 2
   pState: 0
-  destinationTransform: {fileID: 9094308694270455442}
-  destinationNode: {fileID: 4093658633866938910}
-  currentNode: {fileID: 1281222770}
-  previousNode: {fileID: 1281222770}
-  pathSelect: {fileID: 1548111609}
   speed: 10
 --- !u!65 &1302997673
 BoxCollider:
@@ -2848,7 +2845,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI_pathSelect: {fileID: 430700455}
-  nodeStatus: 
   UI_transform: {fileID: 430700456}
 --- !u!1 &1637930252
 GameObject:
@@ -3623,6 +3619,8 @@ GameObject:
   - component: {fileID: 1982019077}
   - component: {fileID: 1982019076}
   - component: {fileID: 1982019081}
+  - component: {fileID: 1982019083}
+  - component: {fileID: 1982019082}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3642,14 +3640,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37264a294b7faf4b83ca0893ef8db2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeManager: {fileID: 0}
+  playerMove: {fileID: 0}
   player: {fileID: 1982019081}
   playerID: 1
   pState: 0
-  destinationTransform: {fileID: 9094308694270455442}
-  destinationNode: {fileID: 4093658633866938910}
-  currentNode: {fileID: 1281222770}
-  previousNode: {fileID: 1281222770}
-  pathSelect: {fileID: 1548111609}
   speed: 10
 --- !u!65 &1982019077
 BoxCollider:
@@ -3740,16 +3735,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerID: 1
   playerMoney: 0
+  steps: 0
   pickUp: 0
   dropOff: 0
-  specialNode: 0
-  finishedQuest: 0
+  NoActiveQuest: 0
   activeQuest:
     pickupNode: {fileID: 201482706}
     destinationNode: {fileID: 790222714}
     reward: 70
   questSelector: {fileID: 421258439}
-  specialNodeResolved: 0
+  specialNode: 0
+  effectResolved: 0
+--- !u!114 &1982019082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982019075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d39b652cc148c04dab87f02352bbffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerCar: {fileID: 1982019080}
+  PlayerSpeed: 10
+--- !u!114 &1982019083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982019075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80001f56226fc124999e07a7ec5101b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pathSelect: {fileID: 1548111609}
+  destinationTransform: {fileID: 9094308694270455442}
+  destinationNode: {fileID: 4093658633866938910}
+  currentNode: {fileID: 1281222770}
+  previousNode: {fileID: 1281222770}
 --- !u!1001 &2025445875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4186,7 +4213,6 @@ MonoBehaviour:
   south: {fileID: 1281222770}
   east: {fileID: 352300068}
   west: {fileID: 0}
-  connection: []
 --- !u!1 &6853943560452715243
 GameObject:
   m_ObjectHideFlags: 0

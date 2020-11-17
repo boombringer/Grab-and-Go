@@ -3,27 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerState { stop, move, getNode, checkStep, specialNode, quest, nodeCheck }
 public class CarMovement : MonoBehaviour
 {
+
+    public PlayerNodeManager nodeManager;
+    public PlayerMovement playerMove;
     //player
     public Player player;
     public int playerID;
 
     //PlayerState
-    public enum PlayerState {stop,move,getNode, checkStep ,specialNode,quest, nodeCheck}
+    
     public PlayerState pState = PlayerState.stop;
 
-    
-    // movement
-    public Transform destinationTransform;
-    public Node destinationNode;
-    public Node currentNode;
-    public Node previousNode;
-
-    public PathSelector pathSelect;
-
     public float speed = 100;
-    private int steps = 0;
 
     //CheckQUEST
 
@@ -33,23 +27,29 @@ public class CarMovement : MonoBehaviour
         if(pState == PlayerState.stop)
         {
             //PlayerController
-            if (Input.GetKeyDown(KeyCode.Space) && playerID == 1)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 pState = PlayerState.move;
-                steps = 10;
-            }
-            if (Input.GetKeyDown(KeyCode.K) && playerID == 2)
-            {
-                pState = PlayerState.move;
-                steps = 10;
+                player.steps = 10;
             }
         }
 
-        if(pState == PlayerState.move)
+        if (pState == PlayerState.getNode)
         {
-           bool move = OnMove();
+            if (nodeManager.destinationTransform != null)
+            {
+
+                pState = PlayerState.move;
+            } 
+            nodeManager.GetNextDestination();
+        }
+
+        if (pState == PlayerState.move)
+        {
+           var move = playerMove.OnMove();//OnMove();
            if (!move)
-           { 
+           {
+
                 pState = PlayerState.nodeCheck; 
            }
         }
@@ -57,31 +57,26 @@ public class CarMovement : MonoBehaviour
 
         if(pState == PlayerState.nodeCheck)
         {
-            player.CheckQuestNode(currentNode);
+
+            player.CheckQuestNode(nodeManager.currentNode);
             pState = PlayerState.quest;
         }
 
 
         if (pState == PlayerState.quest)
         {
+            //class tidak bisa dijadikan completely null
+            // jadi harus ada boolean penggantinya 
+            // nunggu quest kepilih
 
-            if (player.finishedQuest) 
-            {
-                //class tidak bisa dijadikan completely null
-                // jadi harus ada boolean penggantinya 
-                // nunggu quest kepilih
-            }
+            if (player.NoActiveQuest) return;
             else pState = PlayerState.specialNode;
 
         }
 
         if(pState == PlayerState.specialNode)
         {
-            if (player.specialNode)
-            {
-                
-
-            }
+            if (player.specialNode) return;
             else
                 pState = PlayerState.checkStep;
         }
@@ -89,73 +84,19 @@ public class CarMovement : MonoBehaviour
 
         if (pState == PlayerState.checkStep)
         {
-            if (steps > 0)
-            {
-                pState = PlayerState.getNode;
-            }
-            if (steps == 0)
-            {
-                pState = PlayerState.stop;
-            }
+            if (player.steps > 0) pState = PlayerState.getNode;
+            else pState = PlayerState.stop;
         }
 
 
 
-        if (pState == PlayerState.getNode)
-        {
-
-            GetNextDestination();
-            if (destinationTransform != null) pState = PlayerState.move;
-
-                
-        }
+        
 
         
 
 
     }
 
-    private void GetNextDestination()
-    {     
-        Node n = pathSelect.NodeSelect(currentNode, previousNode);
-        Transform t = null;
-
-        if (n != null)
-        {
-            destinationTransform = n.GetTransform();
-            destinationNode = n;
-        }
-
-    }
-
-    private bool OnMove()
-    {
-        //movementScript
-        if (destinationTransform != null)
-        {
-            Vector3 des = new Vector3(destinationTransform.position.x, transform.position.y, destinationTransform.position.z);
-            transform.position = Vector3.MoveTowards(transform.position, des, speed * Time.deltaTime);
-
-            if (des == transform.position) // trigger
-            {
-                steps -= 1;
-                previousNode = currentNode;
-                currentNode = destinationNode;
-
-                destinationNode = null;
-                destinationTransform = null;
-
-                return false;
-            }
-            else return true;
-        }
-        else return false;
-    }
-
-    public void SetStep()
-    {
-
-    }
 
 }
 

@@ -7,20 +7,23 @@ public class Player : MonoBehaviour
 {
     public int playerID = -1;
     public float playerMoney = 0;
-    
-    //
+
+    //MovementState    
+    public int steps = 0;
+
+    //QuestState
     public bool pickUp = false;
     public bool dropOff = false;
     
 
     //Quest Selector
-    public bool finishedQuest; // atur lagi
+    public bool NoActiveQuest; // atur lagi
     public Quest activeQuest;
     public QuestSelector questSelector;
 
     //special node mode
     public bool specialNode = false;
-    public bool cardDrawn = false;
+    public bool effectResolved = false;
 
     private void Update()
     {
@@ -55,7 +58,7 @@ public class Player : MonoBehaviour
             playerMoney += activeQuest.reward;
             activeQuest = null;// hanya null isi variable dari class (class != null / activeQuest != null )
 
-            finishedQuest = true; // mark klo ga ada quest
+            NoActiveQuest = true; // mark klo ga ada quest
 
             questSelector.OpenQuestSelector(playerID);
             // triger anim if avaialble
@@ -80,7 +83,7 @@ public class Player : MonoBehaviour
         activeQuest = qt;
         dropOff = false;
         pickUp = false;
-        finishedQuest = false;
+        NoActiveQuest = false;
     }
 
     

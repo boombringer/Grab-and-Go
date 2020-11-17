@@ -14,16 +14,16 @@ public class Node : MonoBehaviour
     public Node south;
     public Node east;
     public Node west;
-    public List<Node> connection;
+    private List<Node> connection => new List<Node>(4) { north, east, south, west };
 
     private void Awake()
     {
-        connection = new List<Node> {
+       /* connection = new List<Node> {
             north, //0
-            south, //1
-            east, //2
+            east, //1
+            south, //2
             west  //3
-        };
+        };*/
     }
 
     public void Trigger() 
@@ -38,8 +38,6 @@ public class Node : MonoBehaviour
     {
         IEffect effect = GetComponent<IEffect>();
         if (effect == null) return;
-        
-
     }
 
 

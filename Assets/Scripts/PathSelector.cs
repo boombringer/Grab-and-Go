@@ -7,70 +7,89 @@ public class PathSelector : MonoBehaviour
     public PathSelectorUI UI_pathSelect;
 
     private bool selectorOpen = false;
-    public List<int> nodeStatus;
+    //public List<int> nodeStatus;
 
     public Transform UI_transform;
 
-    public void OpenSelectorUI(List<int> nodeStatus, Transform currentNode)
+    public void OpenSelector(Node currentNode)
     {
         if (!selectorOpen)
         {
+            var stats = currentNode.GetConnection_Status();
             selectorOpen = true;
-            UI_pathSelect.OpenUI(currentNode);
-            UI_pathSelect.ToggleUI(true, nodeStatus);
-
+            UI_pathSelect.OpenToggleUI(true, stats, currentNode.GetTransform());
         }
-
     }
 
-    public int GetSelected() // listen to this
+ /*   public int GetSelected() // listen to this
     {
         int temp = UI_pathSelect.Selected;
-        if (temp >= 0)
+        *//*if (temp >= 0)
         {
-            selectorOpen = false;
-            UI_pathSelect.CloseUI();
-           // Debug.Log("GetSelected( ) = " + temp);
+            
+           
             return temp;
         }
         else
         {
             return -1;
+        }*//*
+        return temp;
+
+    }*/
+
+    public Node PathSelecting (Node current, Node previous) // USE THIS
+    {
+        int nodeBranch = current.NodeActiveConnection();
+
+        if(nodeBranch == 2)
+        {
+            var nextNode = AutoSelection(current, previous);
+            return nextNode;
         }
 
+        if(nodeBranch > 2)
+        {
+            var nextNode = ManualSelection(current);
+            return nextNode;
+        }
+
+        return null;
     }
 
-    public Node NodeSelect(Node current,Node previous)
+    public Node AutoSelection(Node current , Node previous)
     {
-        int branch = current.NodeActiveConnection();
-
-        if(branch == 2)
+        foreach (Node n in current.GetConnection())
         {
-            foreach (Node n in current.connection)
+            if (n != null && n != previous)
             {
-                if (n != null && n != previous)
-                {
-                    return n;
-                }
-            }
-        }
-        else if (branch > 2 || branch == 1)
-        {
-            List<int> stats = current.GetConnection_Status();
-            OpenSelectorUI(stats, current.GetTransform());
-            int selected = GetSelected();
-
-            if (selected >= 0)
-            {
-                return current.GetDestinationNode(selected);
+                return n;
             }
         }
 
         return null;
     }
 
-    private void CloseSelectorUI()
+    public Node ManualSelection(Node current)
     {
-        UI_pathSelect.CloseUI();
+        OpenSelector(current);
+
+        //int selected = GetSelected();
+
+        var selected = UI_pathSelect.Selected;
+
+        if (selected < 0) return null;
+
+        //selectorOpen = false;
+
+        var nd = current.GetDestinationNode(selected);
+
+        return nd;
+    }
+
+    public void CloseSelectorUI()
+    {
+        UI_pathSelect.DisableUI();
+        selectorOpen = false;
     }
 }
