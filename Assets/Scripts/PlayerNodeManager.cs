@@ -34,6 +34,7 @@ public class PlayerNodeManager : MonoBehaviour
         Node selectedNode = _pathSelect.PathSelecting(currentNode, previousNode);
 
         if (selectedNode == null) return;
+
         _pathSelect.CloseSelectorUI();
         OnSelectedNode(selectedNode);
 

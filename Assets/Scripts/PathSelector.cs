@@ -74,13 +74,9 @@ public class PathSelector : MonoBehaviour
     {
         OpenSelector(current);
 
-        //int selected = GetSelected();
-
         var selected = UI_pathSelect.Selected;
 
         if (selected < 0) return null;
-
-        //selectorOpen = false;
 
         var nd = current.GetDestinationNode(selected);
 

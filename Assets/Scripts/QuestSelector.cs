@@ -38,6 +38,7 @@ public class QuestSelector : MonoBehaviour
         {
             bt.onClick.RemoveAllListeners();
         }
+
         selectorsID = -1;
         questUI.SetActive(false);
 

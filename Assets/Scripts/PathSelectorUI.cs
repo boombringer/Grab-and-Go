@@ -29,11 +29,15 @@ public class PathSelectorUI : MonoBehaviour
     {
         Selected = -1;
 
-        selectUI.transform.position = new Vector3(selectorTransform.position.x, transform.position.y, selectorTransform.position.z);
+        selectUI.transform.position = new Vector3(
+            selectorTransform.position.x, 
+            transform.position.y, 
+            selectorTransform.position.z
+            );
 
         selectUI.SetActive(true);
 
-        //ADD LISTENER
+        //ADD LISTENER & Activate Button
         for (int i = 0; i < arrowButton.Count; i++)
         {
             int n = i;
