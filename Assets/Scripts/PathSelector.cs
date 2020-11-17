@@ -21,22 +21,6 @@ public class PathSelector : MonoBehaviour
         }
     }
 
- /*   public int GetSelected() // listen to this
-    {
-        int temp = UI_pathSelect.Selected;
-        *//*if (temp >= 0)
-        {
-            
-           
-            return temp;
-        }
-        else
-        {
-            return -1;
-        }*//*
-        return temp;
-
-    }*/
 
     public Node PathSelecting (Node current, Node previous) // USE THIS
     {

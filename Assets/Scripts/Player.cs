@@ -25,6 +25,9 @@ public class Player : MonoBehaviour
     public bool specialNode = false;
     public bool effectResolved = false;
 
+    //playerEffectManager
+    public PlayerEffectManager playerEffectManager;
+
     private void Update()
     {
         ///DEBUGING ONLY

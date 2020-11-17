@@ -199,6 +199,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 118935440}
   m_CullTransparentMesh: 0
+--- !u!1 &189279045 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1736827880164561151, guid: bff8f01ab230df44380145680942e211,
+    type: 3}
+  m_PrefabInstance: {fileID: 558700495}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &199842174
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,7 +838,7 @@ MonoBehaviour:
   - pickupNode: {fileID: 1516847995}
     destinationNode: {fileID: 790222714}
     reward: 50
-  questUI: {fileID: 0}
+  questUI: {fileID: 1424794401}
   questButtons:
   - {fileID: 850401951}
   - {fileID: 2044308102}
@@ -1107,6 +1113,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7429810231821885277, guid: bff8f01ab230df44380145680942e211,
+        type: 3}
+      propertyPath: arrowButton.Array.data[1]
+      value: 
+      objectReference: {fileID: 1025057362}
+    - target: {fileID: 7429810231821885277, guid: bff8f01ab230df44380145680942e211,
+        type: 3}
+      propertyPath: arrowButton.Array.data[2]
+      value: 
+      objectReference: {fileID: 1635478570}
+    - target: {fileID: 7429810231821885277, guid: bff8f01ab230df44380145680942e211,
+        type: 3}
+      propertyPath: selectUI
+      value: 
+      objectReference: {fileID: 189279045}
+    - target: {fileID: 7429810231821885277, guid: bff8f01ab230df44380145680942e211,
+        type: 3}
+      propertyPath: arrow.Array.data[1]
+      value: 
+      objectReference: {fileID: 1025057360}
+    - target: {fileID: 7429810231821885277, guid: bff8f01ab230df44380145680942e211,
+        type: 3}
+      propertyPath: arrow.Array.data[2]
+      value: 
+      objectReference: {fileID: 1635478568}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bff8f01ab230df44380145680942e211, type: 3}
 --- !u!1001 &600574689
@@ -1683,7 +1714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ba078abd4bad34188b73a6f048e45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effectID: 1
 --- !u!1 &864808715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1932,6 +1962,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1002362685}
   m_CullTransparentMesh: 0
+--- !u!1 &1025057360 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1736827879802675947, guid: bff8f01ab230df44380145680942e211,
+    type: 3}
+  m_PrefabInstance: {fileID: 558700495}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1025057362 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1736827879802675941, guid: bff8f01ab230df44380145680942e211,
+    type: 3}
+  m_PrefabInstance: {fileID: 558700495}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025057360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1042823578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1975,7 +2023,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf539ed25a3ab484fa2eb37602f70b6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effectID: 2
 --- !u!1 &1119376681
 GameObject:
   m_ObjectHideFlags: 0
@@ -2461,7 +2508,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1424794402
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2846,6 +2893,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI_pathSelect: {fileID: 430700455}
   UI_transform: {fileID: 430700456}
+--- !u!1 &1635478568 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1736827879190866633, guid: bff8f01ab230df44380145680942e211,
+    type: 3}
+  m_PrefabInstance: {fileID: 558700495}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1635478570 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1736827879190866635, guid: bff8f01ab230df44380145680942e211,
+    type: 3}
+  m_PrefabInstance: {fileID: 558700495}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635478568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1637930252
 GameObject:
   m_ObjectHideFlags: 0
@@ -3587,8 +3652,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ad81ada64111ce4cb2834e5a430a09f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1982019081}
-  _effectID: 2
 --- !u!4 &1934656553
 Transform:
   m_ObjectHideFlags: 0
@@ -3640,8 +3703,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37264a294b7faf4b83ca0893ef8db2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeManager: {fileID: 0}
-  playerMove: {fileID: 0}
+  nodeManager: {fileID: 1982019083}
+  playerMove: {fileID: 1982019082}
   player: {fileID: 1982019081}
   playerID: 1
   pState: 0
@@ -3746,6 +3809,7 @@ MonoBehaviour:
   questSelector: {fileID: 421258439}
   specialNode: 0
   effectResolved: 0
+  playerEffectManager: {fileID: 0}
 --- !u!114 &1982019082
 MonoBehaviour:
   m_ObjectHideFlags: 0

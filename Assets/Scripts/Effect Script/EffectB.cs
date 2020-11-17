@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectB : MonoBehaviour, IEffect
+public class EffectB : MonoBehaviour
 {
-    public int _effectID;
+   /* public int _effectID;
 
     private void Start()
     {
@@ -19,5 +19,5 @@ public class EffectB : MonoBehaviour, IEffect
         //Effect
         player.playerMoney = 1000;
     }
-
+*/
 }
